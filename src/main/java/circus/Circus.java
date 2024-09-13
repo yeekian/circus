@@ -43,9 +43,38 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        System.out.println("Number of animals in array are: " + animals.length);
+        //animals[3] = new Elephant("Eli"); // this does not work, as array is fixed size.
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+
+        printAllAnimals(animalArrayList);
+
+        printNumberOfAnimalsInTheCircus(animalArrayList);
+        Elephant strongOne = new Elephant("Strong One");
+        animalArrayList.add(strongOne);
+
+        Duck andy = new Duck("Andy");
+        animalArrayList.add(andy);
+
+        System.out.println("Before sorting .... ");
+        printAllAnimals(animalArrayList);
+        printNumberOfAnimalsInTheCircus(animalArrayList);
+
+        System.out.println("Strong One is in position: " + animalArrayList.indexOf(strongOne));
+
+        animalArrayList.sort(AnimalNameComparator);
+
+        System.out.println("After sorting... ");
+        printAllAnimals(animalArrayList);
+        //        makeAnimalsTalk();
+//        System.out.println("Total value of animals " + calculateAssetValue(animals));
+//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+    }
+
+    private static void printNumberOfAnimalsInTheCircus(ArrayList<Animal> animalArrayList) {
+        System.out.println("Size of our animal array list: " + animalArrayList.size());
+    }
+
     private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
         for (Animal a: animalArrayList) {
             System.out.println(a);
